@@ -2,6 +2,7 @@ package com.lugares_v
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
@@ -32,7 +33,9 @@ class MainActivity : AppCompatActivity() {
         binding.btRegister.setOnClickListener{ haceRegistro() }
 
         //Definir evento onlcick de boton login
-        binding.btRegister.setOnClickListener{ haceLogin() }
+        binding.btLogin.setOnClickListener{ haceLogin() }
+
+        //
     }
 
     private fun haceRegistro() {
@@ -40,10 +43,12 @@ class MainActivity : AppCompatActivity() {
         var email = binding.etCorreo.text.toString()
         var clave = binding.etClave.text.toString()
 
+        Log.d("Registrandose","Haciendo call a registro")
         //Utilizo el objeto auth para hacer el registro...
         auth.createUserWithEmailAndPassword(email, clave)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful){ //Se creo el ususario
+                    Log.d("Registrandose","Registro Exitoso")
                     val user = auth.currentUser
                     refresca(user)
                 }else{ //si no se logro hubo un error...
@@ -63,6 +68,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun haceLogin() {
-        TODO("Not yet implemented")
+        //Recupero la info que el usuario ingreso en el login del app
+        var email = binding.etCorreo.text.toString()
+        var clave = binding.etClave.text.toString()
+
+        Log.d("Autenticandose","Haciendo call a auth")
+        //Utilizo el objeto auth para hacer el registro...
+        auth.signInWithEmailAndPassword(email, clave)
+            .addOnCompleteListener(this) { task ->
+                if(task.isSuccessful){ //Se creo el ususario
+                    Log.d("Authentication","Ingreso Exitoso")
+                    val user = auth.currentUser
+                    refresca(user)
+                }else{ //si no se logro hubo un error...
+                    Toast.makeText(baseContext,"Falló Autenticacion",Toast.LENGTH_LONG).show()
+                    refresca(null)
+                }
+            }
+        }
+    //Esto se ejecuta toda vez q se presente el app en pantalla, validation of logged user
+    public override fun onStart() {
+        super.onStart()
+        val usuario = auth.currentUser
+        refresca(usuario)
     }
+
 }
