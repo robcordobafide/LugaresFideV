@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525159963254",
+    "project_id": "lugares-3beda",
+    "storage_bucket": "lugares-3beda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525159963254:android:256a13d61cd76ac9141d57",
+        "android_client_info": {
+          "package_name": "com.isc.lugares"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525159963254-30g0122cdvgn1khuf0g0c7njl0fe78e2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpUOkdhIK2DD0oEa8ulpXm_gtXRGCF6Zg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525159963254-30g0122cdvgn1khuf0g0c7njl0fe78e2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
